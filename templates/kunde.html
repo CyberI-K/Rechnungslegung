@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Kunde</title>
+     <style>
+         header {
+            display: flex;
+            align-items: center;
+            background-color: black;
+        }
+
+        .list-group a {
+            color: white;
+        }
+        .list-group {
+            background-color: black;
+            padding: 10px;
+        }
+        .list-group-item {
+            background-color: black;
+        }
+         .container {
+            display: flex;
+            justify-content: space-between;
+            font-family: Arial, sans-serif;
+
+        }
+
+        .item {
+            flex: 1;
+            text-align: center;
+            padding: 10px;
+            margin-bottom: 50px; /* Unterer Rand */
+            border-bottom: 1px solid black; /* Unterstrich-Stil und Farbe */
+
+
+        }
+
+        .quantity {
+            text-align: left;
+        }
+
+        .price {
+            text-align: right;
+        }
+    </style>
+</head>
+<body>
+     <header>
+        <img src="{{ url_for('static', filename='img.png') }}" alt="Header-Bild">
+    </header>
+    <p>SYNE Marketing & Consulting GmbH.Sputnik Trackbikeparts <br>
+    Holzwindenstraße 38.4221 Styrreg,AT</p>
+    <br>
+    <div>
+        {%for kunde in kunden%}
+
+            {{kunde[1]}} {{kunde[2]}}<br>
+            {{kunde[3]}}<br>
+            {{kunde[4]}} {{kunde[5]}}<br>
+            {{kunde[9]}}<br>
+            per Email: {{kunde[7]}}
+        {% endfor %}
+    </div>
+     <br>
+    <div>
+        {%for kunde in kunden%}
+            <h2>Rechnung Nr. {{kunde[11]}} <br>
+             Rechnungsdatum: {{kunde[12]}}</h2>
+
+        {% endfor %}
+    </div>
+
+
+        {%for produkt in result%}
+     <div class="container">
+
+        <div class="item">
+            <div class="quantity">
+                {{produkt[1]}}
+            </div>
+        </div>
+
+
+        <div class="item">
+            <div class="product">
+                <h3>{{produkt[5]}}</h3>
+                {{produkt[6]}}
+            </div>
+        </div>
+
+
+        <div class="item">
+            <div class="price">
+                Ihr Preis: {{produkt[12]}} <br>
+                inkl. {{produkt[11]}} {{produkt[10]}}<br>
+                Enzelpreis:{{produkt[7]}}<br>
+
+            </div>
+        </div>
+
+    </div>
+
+     {% endfor %}
+
+
+
+    <h2>Ihre Adressdaten:</h2>
+    <h3>Rechnungsadresse:</h3>
+    {%for kunde in kunden %}
+         {{kunde[3]}}<br>
+            {{kunde[4]}} {{kunde[5]}}<br>
+            {{kunde[9]}}<br>
+     {% endfor %}
+    <h3>Lieferadresse:</h3>
+    {%for kunde in kunden %}
+         {{kunde[3]}}<br>
+            {{kunde[4]}} {{kunde[5]}}<br>
+            {{kunde[9]}}<br>
+     {% endfor %}
+
+    <nav>
+        <ul>
+            {% for produkt in produkte %}
+            <li>Zahlungsvariante: {{produkt[1]}}</li>
+            <li>Versandart: {{produkt[2]}}</li>
+            {% endfor %}
+        </ul>
+    </nav>
+</body>
+<footer>
+    <div class="footer">
+        <div class="column">
+            <h3>Sputnik Trackbike Parts</h3>
+            <p>
+                SYNE Marketing & Consulting GmbH<br>
+                Holzwindenstraße.38, 4221 Steyregg<br>
+                Tel: 43 676 5258285<br>
+                Email: info@sputnik-trackbikepartners.at<br>
+                Web: <a href="http://www.sputnik-trackbikeparts.at">www.sputnik-trackbikeparts.at</a>
+            </p>
+        </div>
+        <div class="column">
+            <h3>Geschäftsführung: Uwe Mutz</h3>
+            <p>
+                Firmenbuchnummer: FNKJOI<br>
+                UID: ATUdnhjgfns<br>
+                Gerichtstand: Uhrfahr-Umgebung
+            </p>
+        </div>
+        <div class="column">
+            <h3>Bankverbindung</h3>
+            <p>
+                Reifeisen Landesbank<br>
+                IBAN: AT20135432201322415<br>
+                BIC: RZ00AT23454
+            </p>
+        </div>
+    </div>
+    <style>
+        .footer {
+            display: flex;
+            justify-content: space-between;
+        }
+        .column {
+            flex-basis: 30%;
+            font-size: small;
+        }
+    </style>
+</footer>
+
+</html>
